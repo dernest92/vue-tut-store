@@ -1,3 +1,4 @@
+const baseUrl = window.location.origin;
 const products = [
   {
     slug: "fresh-foam-hierro-v5",
@@ -10,25 +11,25 @@ const products = [
       {
         color: "Light Aluminum with Blue Ashes & Chromatic Yellow",
         images: [
-          "mthierg5_nb_02_i.jpg",
-          "mthierg5_nb_03_i.jpg",
-          "mthierg5_nb_07_i.jpg"
+          `${baseUrl}/mthierg5_nb_02_i.jpg`,
+          `${baseUrl}/mthierg5_nb_03_i.jpg`,
+          `${baseUrl}/mthierg5_nb_07_i.jpg`
         ]
       },
       {
         color: "Black with Moonbeam",
         images: [
-          "mthierk5_nb_02_i.jpg",
-          "mthierk5_nb_03_i.jpg",
-          "mthierk5_nb_04_i.jpg"
+          `${baseUrl}/mthierk5_nb_02_i.jpg`,
+          `${baseUrl}/mthierk5_nb_03_i.jpg`,
+          `${baseUrl}/mthierk5_nb_04_i.jpg`
         ]
       },
       {
         color: "Varsity Gold with Neo Classic Blue & Phantom",
         images: [
-          "mthiery5_nb_02_i.jpg",
-          "mthiery5_nb_03_i.jpg",
-          "mthiery5_nb_07_i.jpg"
+          `${baseUrl}/mthiery5_nb_02_i.jpg`,
+          `${baseUrl}/mthiery5_nb_03_i.jpg`,
+          `${baseUrl}/mthiery5_nb_07_i.jpg`
         ]
       }
     ]
@@ -44,17 +45,17 @@ const products = [
       {
         color: "Black with Light Aluminum",
         images: [
-          "mroavtk_nb_02_i.jpg",
-          "mroavtk_nb_03_i.jpg",
-          "mroavtk_nb_04_i.jpg"
+          `${baseUrl}/mroavtk_nb_02_i.jpg`,
+          `${baseUrl}/mroavtk_nb_03_i.jpg`,
+          `${baseUrl}/mroavtk_nb_04_i.jpg`
         ]
       },
       {
         color: "Varsity Gold with Light Aluminum",
         images: [
-          "mroavtv_nb_02_i.jpg",
-          "mroavtv_nb_03_i.jpg",
-          "mroavtv_nb_04_i.jpg"
+          `${baseUrl}/mroavtv_nb_02_i.jpg`,
+          `${baseUrl}/mroavtv_nb_03_i.jpg`,
+          `${baseUrl}/mroavtv_nb_04_i.jpg`
         ]
       }
     ]
@@ -70,17 +71,17 @@ const products = [
       {
         color: "Black with Grey",
         images: [
-          "nm440bel_nb_02_i.jpg",
-          "nm440bel_nb_03_i.jpg",
-          "nm440bel_nb_04_i.jpg"
+          `${baseUrl}/nm440bel_nb_02_i.jpg`,
+          `${baseUrl}/nm440bel_nb_03_i.jpg`,
+          `${baseUrl}/nm440bel_nb_04_i.jpg`
         ]
       },
       {
         color: "Light Grey with Grey",
         images: [
-          "nm440elg_nb_02_i.jpg",
-          "nm440elg_nb_03_i.jpg",
-          "nm440elg_nb_04_i.jpg"
+          `${baseUrl}/nm440elg_nb_02_i.jpg`,
+          `${baseUrl}/nm440elg_nb_03_i.jpg`,
+          `${baseUrl}/nm440elg_nb_04_i.jpg`
         ]
       }
     ]
@@ -96,17 +97,17 @@ const products = [
       {
         color: "Black with White",
         images: [
-          "usd100b3_nb_02_i.jpg",
-          "usd100b3_nb_03_i.jpg",
-          "nm440bel_nb_04_i.jpg"
+          `${baseUrl}/usd100b3_nb_02_i.jpg`,
+          `${baseUrl}/usd100b3_nb_03_i.jpg`,
+          `${baseUrl}/usd100b3_nb_04_i.jpg`
         ]
       },
       {
         color: "Light Grey with Grey",
         images: [
-          "nm440elg_nb_02_i.jpg",
-          "nm440elg_nb_03_i.jpg",
-          "usd100b3_nb_04_i.jpg"
+          `${baseUrl}/usd100w3_nb_02_i.jpg`,
+          `${baseUrl}/usd100w3_nb_03_i.jpg`,
+          `${baseUrl}/usd100w3_nb_04_i.jpg`
         ]
       }
     ]
@@ -115,6 +116,9 @@ const products = [
 
 export default {
   getProducts() {
+    console.log("get products");
+    console.log(window.location.origin);
+
     return new Promise(resolve => {
       resolve(products);
     });

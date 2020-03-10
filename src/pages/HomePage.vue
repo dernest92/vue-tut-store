@@ -2,14 +2,9 @@
   <div class="container">
     <h2>Home Page</h2>
     <div class="product-grid">
-      <div
-        to="/pd"
-        class="product-thumbnail"
-        v-for="prod in products"
-        :key="prod.slug"
-      >
+      <div to="/pd" class="product-thumbnail" v-for="prod in products" :key="prod.slug">
         <router-link :to="`/pd/${prod.slug}`">
-          <img :src="prod.variants[0].images[0]" alt="" />
+          <img :src="prod.variants[0].images[0]" alt />
         </router-link>
         <div class="product-text">
           <router-link class="product-title" :to="`/pd/${prod.slug}`">
@@ -40,9 +35,10 @@ export default {
 <style lang="scss" scoped>
 .product-grid {
   display: grid;
-  grid-gap: 30px;
+  column-gap: 10px;
+  row-gap: 30px;
   margin: 40px 0;
-  grid-template-columns: repeat(auto-fill, 250px);
+  grid-template-columns: repeat(auto-fill, 300px);
   justify-content: space-evenly;
 }
 
@@ -79,7 +75,8 @@ export default {
 
 @media screen and (max-width: 700px) {
   .product-grid {
-    grid-gap: 10px;
+    column-gap: 5px;
+    row-gap: 20px;
     margin: 40px 0;
     grid-template-columns: repeat(auto-fill, 170px);
   }

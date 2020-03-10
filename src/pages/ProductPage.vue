@@ -6,30 +6,41 @@
         <div class="img-prev">
           <img
             v-for="(image, index) in variantImages"
-            :src="`../../${image}`"
-            alt=""
+            :src="image"
+            alt
             :key="image"
             :class="activeImage === index ? 'active' : null"
             @mouseover="changeMainImg(index)"
           />
         </div>
-        <img class="main-img" :src="`../../${activeImgString}`" alt="shoe" />
+        <img class="main-img" :src="activeImgString" alt="shoe" />
       </div>
       <div class="about">
         <h2>{{ product.name }}</h2>
         <p>${{ product.price }}</p>
         <p>Color: {{ product.variants[activeVariant].color }}</p>
-        <p>{{ product.description }}</p>
         <div class="variants">
           <img
             v-for="(variant, index) in product.variants"
             @click="changeVariant(index)"
             :class="activeVariant === index ? 'active' : null"
-            :src="`../../${variant.images[0]}`"
-            alt=""
+            :src="variant.images[0]"
+            alt
             :key="variant.color"
           />
         </div>
+        <p>Size: {{selectedSize}}</p>
+        <div class="sizes">
+          <div
+            @click="setSize(size)"
+            class="size"
+            :class="selectedSize === size ? 'selected' : null"
+            v-for="size in product.sizes"
+            :key="size"
+          >{{size}}</div>
+        </div>
+        <h4>Product Description</h4>
+        <p>{{ product.description }}</p>
       </div>
     </div>
   </div>
@@ -48,7 +59,8 @@ export default {
       loading: true,
       product: {},
       activeVariant: 0,
-      activeImage: 0
+      activeImage: 0,
+      selectedSize: null
     };
   },
   computed: {
@@ -68,6 +80,9 @@ export default {
     changeVariant(index) {
       this.activeVariant = index;
       this.activeImage = 0;
+    },
+    setSize(size) {
+      this.selectedSize = size;
     }
   }
 };
@@ -114,6 +129,37 @@ export default {
 
     &.active {
       border: 2px #444 solid;
+    }
+  }
+}
+
+.sizes {
+  display: grid;
+  row-gap: 10px;
+  column-gap: 10px;
+  grid-template-columns: repeat(auto-fill, 40px);
+  justify-content: space-evenly;
+  margin: 20px 0;
+
+  .size {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    background: #f4f4f4;
+    opacity: 0.5;
+    border-radius: 5px;
+    border: 2px #f4f4f4 solid;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+      border: 2px #ccc solid;
+      opacity: 0.75;
+    }
+    &.selected {
+      opacity: 1;
+      border: 2px #333 solid;
     }
   }
 }
