@@ -116,9 +116,6 @@ const products = [
 
 export default {
   getProducts() {
-    console.log("get products");
-    console.log(window.location.origin);
-
     return new Promise(resolve => {
       resolve(products);
     });

@@ -18,18 +18,18 @@
       <div class="about">
         <h2>{{ product.name }}</h2>
         <p>${{ product.price }}</p>
-        <p>Color: {{ product.variants[activeVariant].color }}</p>
+        <p>Color: {{ product.variants[selectedVariant].color }}</p>
         <div class="variants">
           <img
             v-for="(variant, index) in product.variants"
             @click="changeVariant(index)"
-            :class="activeVariant === index ? 'active' : null"
+            :class="selectedVariant === index ? 'active' : null"
             :src="variant.images[0]"
             alt
             :key="variant.color"
           />
         </div>
-        <p>Size: {{selectedSize}}</p>
+        <p>Size: {{ selectedSize }}</p>
         <div class="sizes">
           <div
             @click="setSize(size)"
@@ -37,8 +37,11 @@
             :class="selectedSize === size ? 'selected' : null"
             v-for="size in product.sizes"
             :key="size"
-          >{{size}}</div>
+          >
+            {{ size }}
+          </div>
         </div>
+        <button @click="addToCart" class="btn">Add to Cart</button>
         <h4>Product Description</h4>
         <p>{{ product.description }}</p>
       </div>
@@ -58,27 +61,40 @@ export default {
     return {
       loading: true,
       product: {},
-      activeVariant: 0,
+      selectedVariant: 0,
       activeImage: 0,
       selectedSize: null
     };
   },
   computed: {
     activeImgString() {
-      const { product, activeVariant, activeImage } = this;
-      return product.variants[activeVariant].images[activeImage];
+      const { product, selectedVariant, activeImage } = this;
+      return product.variants[selectedVariant].images[activeImage];
     },
     variantImages() {
-      const { product, activeVariant } = this;
-      return product.variants[activeVariant].images;
+      const { product, selectedVariant } = this;
+      return product.variants[selectedVariant].images;
     }
   },
   methods: {
+    addToCart() {
+      const { product, selectedSize, selectedVariant } = this;
+      const { name, price } = product;
+
+      const { color, images } = product.variants[selectedVariant];
+      const img = images[0];
+      const size = selectedSize;
+      if (!size) {
+        console.log("select a size!");
+        return;
+      }
+      this.$store.dispatch("addCartItem", { name, color, size, price, img });
+    },
     changeMainImg(index) {
       this.activeImage = index;
     },
     changeVariant(index) {
-      this.activeVariant = index;
+      this.selectedVariant = index;
       this.activeImage = 0;
     },
     setSize(size) {

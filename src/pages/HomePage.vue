@@ -1,8 +1,12 @@
 <template>
   <div class="container">
-    <h2>Home Page</h2>
     <div class="product-grid">
-      <div to="/pd" class="product-thumbnail" v-for="prod in products" :key="prod.slug">
+      <div
+        to="/pd"
+        class="product-thumbnail"
+        v-for="prod in products"
+        :key="prod.slug"
+      >
         <router-link :to="`/pd/${prod.slug}`">
           <img :src="prod.variants[0].images[0]" alt />
         </router-link>
@@ -23,6 +27,7 @@ export default {
   async created() {
     const data = await api.getProducts();
     this.products = data;
+    const msg = this.$store.state.message;
   },
   data() {
     return {

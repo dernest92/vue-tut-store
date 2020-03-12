@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.btn {
+  background: rgb(231, 65, 15);
+  outline: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  display: block;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 10px 0;
+  &:hover {
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+  }
+}
