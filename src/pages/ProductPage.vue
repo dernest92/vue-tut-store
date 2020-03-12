@@ -85,7 +85,6 @@ export default {
       const img = images[0];
       const size = selectedSize;
       if (!size) {
-        console.log("select a size!");
         return;
       }
       this.$store.dispatch("addCartItem", { name, color, size, price, img });
@@ -108,16 +107,18 @@ export default {
 .product-container {
   display: grid;
   grid-template-columns: auto auto;
-  grid-gap: 10px;
+  column-gap: 40px;
+  padding: 0 20px;
+  margin: 10px auto;
 }
 .main-img {
-  width: 400px;
+  width: 100%;
 }
 
 .images {
   display: grid;
   column-gap: 10px;
-  grid-template-columns: 100px auto;
+  grid-template-columns: 1fr 4fr;
 }
 
 .img-prev {
@@ -177,6 +178,20 @@ export default {
       opacity: 1;
       border: 2px #333 solid;
     }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .product-container {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    row-gap: 20px;
+    max-width: 600px;
+    padding: 0 10px;
+  }
+
+  .btn {
+    width: 100%;
   }
 }
 </style>

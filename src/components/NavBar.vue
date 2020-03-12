@@ -4,10 +4,22 @@
       <router-link class="nav-logo" to="/">
         <h1>NB</h1>
       </router-link>
-      <router-link to="/cart">CART</router-link>
+      <router-link to="/cart"
+        >CART: <span class="cart-total">${{ cartTotal }}</span></router-link
+      >
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  computed: {
+    cartTotal() {
+      return this.$store.getters.cartTotal;
+    }
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 a {
@@ -40,5 +52,12 @@ a {
     width: fit-content;
     display: inline-block;
   }
+}
+
+.cart-total {
+  color: white;
+  background: red;
+  padding: 4px 8px;
+  border-radius: 10px;
 }
 </style>
