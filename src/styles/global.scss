@@ -21,16 +21,29 @@ p {
 
 .btn {
   background: rgb(231, 65, 15);
+  text-decoration: none;
   outline: none;
   padding: 10px 20px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
   border-radius: 5px;
-  display: block;
   font-weight: bold;
   color: #fff;
   cursor: pointer;
   transition: all 0.2s;
-  margin: 10px 0;
+  &.btn-flat {
+    box-shadow: none;
+    background: none;
+    color: #333;
+    border: none;
+    &:hover {
+      box-shadow: none;
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+
   &:hover {
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
   }

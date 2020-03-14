@@ -1,5 +1,17 @@
 <template>
   <div class="container">
+    <Modal v-if="showModal" @close-modal="closeModal">
+      <template v-slot:title>
+        Success!
+      </template>
+      <template v-slot:message>
+        Your shoes have been added to your cart.
+      </template>
+      <template v-slot:buttons>
+        <router-link class="btn" to="/cart">View Cart</router-link>
+        <button class="btn btn-flat" @click="closeModal">Keep Shopping</button>
+      </template>
+    </Modal>
     <div v-if="this.loading">loading</div>
     <div v-else class="product-container">
       <div class="images">
@@ -29,7 +41,11 @@
             :key="variant.color"
           />
         </div>
-        <p>Size: {{ selectedSize }}</p>
+        <p>
+          <span>Size: </span>
+          <span v-if="sizeError" class="error">Pick a size</span>
+          <span>{{ selectedSize }}</span>
+        </p>
         <div class="sizes">
           <div
             @click="setSize(size)"
@@ -51,7 +67,11 @@
 
 <script>
 import api from "@/api.js";
+import Modal from "@/components/Modal";
 export default {
+  components: {
+    Modal
+  },
   async created() {
     const product = await api.getProductBySlug(this.$route.params.slug);
     this.product = product;
@@ -63,7 +83,9 @@ export default {
       product: {},
       selectedVariant: 0,
       activeImage: 0,
-      selectedSize: null
+      selectedSize: null,
+      sizeError: false,
+      showModal: false
     };
   },
   computed: {
@@ -85,9 +107,22 @@ export default {
       const img = images[0];
       const size = selectedSize;
       if (!size) {
+        this.sizeError = true;
         return;
       }
-      this.$store.dispatch("addCartItem", { name, color, size, price, img });
+      const id = Date.now();
+      this.$store.dispatch("addCartItem", {
+        id,
+        name,
+        color,
+        size,
+        price,
+        img
+      });
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
     },
     changeMainImg(index) {
       this.activeImage = index;
@@ -97,6 +132,7 @@ export default {
       this.activeImage = 0;
     },
     setSize(size) {
+      this.sizeError = false;
       this.selectedSize = size;
     }
   }
@@ -104,6 +140,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.error {
+  background: red;
+  color: white;
+  display: inline-block;
+  padding: 5px 10px;
+}
+
 .product-container {
   display: grid;
   grid-template-columns: auto auto;

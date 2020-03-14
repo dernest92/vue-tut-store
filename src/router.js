@@ -5,6 +5,7 @@ Vue.use(Router);
 
 import HomePage from "@/pages/HomePage";
 import ProductPage from "@/pages/ProductPage";
+import CartPage from "@/pages/CartPage";
 
 export default new Router({
   mode: "history",
@@ -18,6 +19,11 @@ export default new Router({
       path: "/pd/:slug",
       name: "product",
       component: ProductPage
+    },
+    {
+      path: "/cart",
+      name: "cart",
+      component: CartPage
     }
   ]
 });
