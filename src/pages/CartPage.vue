@@ -1,10 +1,10 @@
 <template>
-  <div class="container cart-layout">
+  <div class="container ">
     <div v-if="cart.length === 0">
       <h2>Your cart is empty!</h2>
       Back to <router-link to="/">products</router-link>
     </div>
-    <div v-else>
+    <div v-else class="cart-layout">
       <div class="cart-list">
         <CartItem v-for="item in cart" :key="item.id" :item="item" />
       </div>
@@ -14,7 +14,7 @@
         <CustomInput v-model="address" label="Street" />
         <CustomInput v-model="state" label="State" />
         <CustomInput v-model="city" label="City" />
-        <button class="btn">Checkout: ${{ cartTotal }}</button>
+        <CustomButton>Checkout: ${{ cartTotal }}</CustomButton>
       </div>
     </div>
   </div>
@@ -22,12 +22,11 @@
 
 <script>
 import CartItem from "@/components/CartItem";
-import CustomInput from "@/components/CustomInput";
 export default {
   components: {
-    CartItem,
-    CustomInput
+    CartItem
   },
+
   computed: {
     cart() {
       return this.$store.state.cart;

@@ -4,7 +4,7 @@
       <router-link class="nav-logo" to="/">
         <h1>NB</h1>
       </router-link>
-      <router-link to="/cart"
+      <router-link to="/cart" class="cart-link"
         >CART: <span class="cart-total">${{ cartTotal }}</span></router-link
       >
     </div>
@@ -40,6 +40,7 @@ a {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .nav-logo {
@@ -51,13 +52,18 @@ a {
   h1 {
     width: fit-content;
     display: inline-block;
+    margin: 0;
   }
 }
 
-.cart-total {
-  color: white;
-  background: red;
-  padding: 4px 8px;
-  border-radius: 10px;
+.cart-link {
+  text-decoration: none;
+
+  .cart-total {
+    color: white;
+    background: red;
+    padding: 4px 8px;
+    border-radius: 10px;
+  }
 }
 </style>

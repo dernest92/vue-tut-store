@@ -17,7 +17,6 @@
 export default {
   methods: {
     closeModal() {
-      console.log("close modal");
       this.$emit("close-modal");
     }
   }
@@ -36,6 +35,10 @@ export default {
   right: 0;
   background: rgba(0, 0, 0, 0.3);
   z-index: 100;
+}
+
+.modal-title {
+  margin-top: 0;
 }
 
 .overlay {

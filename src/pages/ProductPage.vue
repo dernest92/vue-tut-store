@@ -8,8 +8,8 @@
         Your shoes have been added to your cart.
       </template>
       <template v-slot:buttons>
-        <router-link class="btn" to="/cart">View Cart</router-link>
-        <button class="btn btn-flat" @click="closeModal">Keep Shopping</button>
+        <CustomButton @click="$router.push('/cart')">View Cart</CustomButton>
+        <CustomButton flat @click="closeModal">Keep Shopping</CustomButton>
       </template>
     </Modal>
     <div v-if="this.loading">loading</div>
@@ -57,7 +57,7 @@
             {{ size }}
           </div>
         </div>
-        <button @click="addToCart" class="btn">Add to Cart</button>
+        <CustomButton @click="addToCart">Add to Cart</CustomButton>
         <h4>Product Description</h4>
         <p>{{ product.description }}</p>
       </div>

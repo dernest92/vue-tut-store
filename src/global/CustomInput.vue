@@ -60,6 +60,9 @@ $main-color: black;
     margin: 10px 0;
     border: #eee 2px solid;
     transition: all 0.2s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 
     &:focus {
       outline: none;

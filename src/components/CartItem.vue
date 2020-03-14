@@ -3,7 +3,7 @@
     <img :src="item.img" />
     <div class="details">
       <h3 class="shoe-name">{{ item.name }}</h3>
-      <span class="shoe-color">{{ item.color }}</span>
+      <div class="shoe-color">{{ item.color }}</div>
       <div class="detail price">${{ item.price }}</div>
       <div class="detail">Size {{ item.size }}</div>
       <button class="remove-btn" @click="removeFromCart">Remove</button>
@@ -42,6 +42,8 @@ export default {
 
 .details {
   padding: 10px;
+  display: grid;
+  justify-content: space-between;
 }
 
 .detail {
@@ -69,11 +71,13 @@ export default {
   font-size: 16px;
   margin-bottom: 0;
   line-height: 1;
+  margin: 0;
 }
 
 .shoe-color {
   font-size: 10px;
   color: #444;
   line-height: 1;
+  margin: 0;
 }
 </style>
